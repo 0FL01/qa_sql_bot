@@ -1,6 +1,8 @@
 # qa_sql_bot
 QA Wiki bot, with SQL base
 
+https://t.me/qa_pocket_bot
+
 Question/Answer for QA Engineer specialisation
 
 # Features
