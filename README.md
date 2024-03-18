@@ -1,5 +1,5 @@
 # qa_sql_bot
-QA Wiki bot, with SQL base
+QA Wiki bot, with SQLite3 base
 
 https://t.me/qa_pocket_bot
 
