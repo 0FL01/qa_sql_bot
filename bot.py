@@ -8,14 +8,14 @@ conn = sqlite3.connect('base.db', check_same_thread=False)
 cursor = conn.cursor()
 
 # Создание объекта бота с указанием токена
-bot = telebot.TeleBot("YOUR_BOT_TOKEN")
+bot = telebot.TeleBot("YOUR_TOKEN_BOT")
 
 # Обработчик команды /start
 @bot.message_handler(commands=['start'])
 
 # Отправка приветственного сообщения
 def send_welcome(message):
-    bot.reply_to(message, "Привет! Я бот-помощник QA, с помощью меня вы сможете узнать среднестатистическую вероятность вопросов, как и сами ответы на вопросы, которые вероятно возникнут на собеседовании по специальности QA. \n\nДля получения ответа на вопрос, отправьте сообщение: \n/id 'Номер вопроса'")
+    bot.reply_to(message, "Привет! Я бот-помощник QA, с помощью меня вы сможете узнать среднестатистическую вероятность вопросов, как и сами ответы на вопросы, которые вероятно возникнут на собеседовании по специальности QA. \n\nСписок вопросов: /question \n\nДля получения ответа на вопрос, отправьте сообщение: \n/id 'Номер вопроса'")
     # Добавляем кнопки
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     item1 = types.KeyboardButton("Как пользоваться")
@@ -53,7 +53,7 @@ def send_questions(message):
 def send_random_question(message):
     cursor.execute("SELECT question, answer FROM qa ORDER BY RANDOM() LIMIT 1")
     random_qa = cursor.fetchone()
-    response = f"Вопрос: {random_qa[0]}\n\nОтвет: <span class=\"tg-spoiler\">{random_qa[1]}</span>"
+    response = f"Вопрос: {random_qa[0]}\n\nОтвет: <span class=\"tg-spoiler\">{random_qa[1]}</span>\n\nВопрос: {random_qa[0]}"
     bot.reply_to(message, response, parse_mode="HTML")
 
 
